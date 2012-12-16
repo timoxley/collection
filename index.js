@@ -44,9 +44,16 @@ function mixin(obj) {
   return obj;
 }
 
-Collection.prototype.add = function add(item) {
-  this.items.push(item)
-  this.emit('added', item)
+Collection.prototype.add = function add(items) {
+  if (type(items) !== 'array') {
+    items = [items]
+  }
+  var addedItems = []
+  var self = this
+  for (var i = 0; i < items.length; i++) {
+    this.items.push(items[i])
+  }
+  this.emit('added', items)
   return this
 }
 
