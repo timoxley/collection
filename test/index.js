@@ -65,51 +65,46 @@ describe('Collection', function() {
     assert(true === collection.has(tim))
     assert(true === collection.has(bob))
     collection.clear()
+    assert.equal(collection.count(), 0)
     assert(false === collection.has(tim))
     assert(false === collection.has(bob))
   })
 
-  it('emits added event when adding items', function(done) {
-    var collection = new Collection()
-    var user = {
-      name: 'Tim'
-    }
-    collection.on('added', function(addedUser) {
-      assert.strictEqual(user, addedUser)
-      done()
+
+  describe('events', function() {
+    var collection, tim, bob
+    beforeEach(function() {
+      collection = new Collection()
+      tim = { name: 'Tim' }
+      bob = { name: 'Bob' }
     })
-    collection.add(user)
-  })
-  it('emits removed event when removing items', function(done) {
-    var collection = new Collection()
-    var user = {
-      name: 'Tim'
-    }
-    collection.add(user)
-    collection.on('removed', function(removedUsers) {
-      assert.equal(removedUsers.length, 1)
-      assert.strictEqual(user, removedUsers[0])
-      done()
+    it('emits added event when adding items', function(done) {
+      collection.on('added', function(addedUsers) {
+        assert.equal(addedUsers.length, 1)
+        assert.strictEqual(tim, addedUsers[0])
+        done()
+      })
+      collection.add(tim)
     })
-    collection.remove(user)
-  })
-  it('emits removed event for each removed item during clear', function(done) {
-    var collection = new Collection()
-    var tim = {
-      name: 'Tim'
-    }
-    var bob = {
-      name: 'Bob'
-    }
-    collection.add(tim)
-    collection.add(bob)
-    var removed = []
-    collection.on('removed', function(removedUsers) {
-      assert.equal(removedUsers.length, 2)
-      assert.deepEqual([tim, bob], removedUsers)
-      done()
+    it('emits removed event when removing items', function(done) {
+      collection.add(tim)
+      collection.on('removed', function(removedUsers) {
+        assert.equal(removedUsers.length, 1)
+        assert.strictEqual(tim, removedUsers[0])
+        done()
+      })
+      collection.remove(tim)
     })
-    collection.clear()
+    it('emits removed event for each removed item during clear', function(done) {
+      collection.add(tim)
+      collection.add(bob)
+      collection.on('removed', function(removedUsers) {
+        assert.equal(removedUsers.length, 2)
+        assert.deepEqual([tim, bob], removedUsers)
+        done()
+      })
+      collection.clear()
+    })
   })
 })
 
