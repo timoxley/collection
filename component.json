@@ -1,0 +1,18 @@
+{
+  "name": "collection",
+  "repo": "timoxley/collection",
+  "description": "Collection of objects",
+  "version": "0.0.1",
+  "keywords": [],
+  "dependencies": {
+    "component/enumerable": "*",
+    "component/emitter": "*",
+    "component/type": "*",
+    "timoxley/assert": "*"
+  },
+  "development": {},
+  "license": "MIT",
+  "scripts": [
+    "index.js"
+  ]
+}
