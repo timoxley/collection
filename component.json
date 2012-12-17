@@ -8,7 +8,9 @@
     "component/enumerable": "*",
     "component/emitter": "*",
     "component/type": "*",
-    "timoxley/assert": "*"
+    "timoxley/assert": "*",
+    "component/to-function": "*",
+    "timoxley/get": "*"
   },
   "development": {},
   "license": "MIT",
