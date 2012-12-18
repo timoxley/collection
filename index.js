@@ -189,4 +189,5 @@ Collection.prototype.remove = function remove(items) {
 Collection.prototype.key = function key(setKey) {
   if (!setKey) return this._key
   this._key = setKey
+  return this
 }
