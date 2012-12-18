@@ -129,6 +129,7 @@ describe('Collection', function() {
       assert.equal(collection.get('Tim').age, 23)
       assert.strictEqual(collection.get('Bob'), undefined)
     })
+
     it('does nothing if no updates', function() {
       collection.key('name')
       collection.add(tim)
@@ -178,6 +179,7 @@ describe('Collection', function() {
         })
         collection.clear()
       })
+
       it('emits empty event when collection is cleared or empty', function(done) {
         collection.once('empty', function() {
           collection.once('empty', function() {
@@ -189,6 +191,7 @@ describe('Collection', function() {
         collection.add(tim)
         collection.remove(tim)
       })
+
       it('emits update when updating items using key name', function(done) {
         collection.key('name')
         collection.once('updated', function(updates) {
@@ -225,6 +228,7 @@ describe('Collection', function() {
         assert.strictEqual(bob, collection.get(bob.name))
         assert.strictEqual(tim, collection.get(tim.name))
       })
+
       describe('getting without a key()', function() {
         it('returns the supplied object if in collection', function() {
           collection.add(tim)

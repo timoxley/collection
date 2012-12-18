@@ -5,7 +5,6 @@ var Emitter = require('emitter')
 var type = require('type')
 var _ = require('to-function')
 var get = require('get')
-var clone = require('clone')
 
 module.exports = Collection
 
@@ -117,6 +116,7 @@ Collection.prototype.get = function(key) {
 }
 
 Collection.prototype.update = function(key, update) {
+  // TODO refactor the shit out of this method
   var keys = Array.isArray(key)
     ? key
     : [key]
@@ -140,9 +140,7 @@ Collection.prototype.update = function(key, update) {
         updatedProperties[prop] = updateContent[prop]
       }
     }
-    console.log('updatedProperties', updatedProperties)
     updatedItems.push(updatedProperties)
-    console.log("updatedItems", updatedItems)
   }
   if (updatedItems.length) this.emit('updated', updatedItems)
   return
