@@ -83,7 +83,7 @@ Collection.prototype.add = function add(items, fn) {
  * Object for matching against collection key.
  *
  * Can take a hash containing search term as a key value,
- * or just the key value to locate.
+ * or just uthe key value to locate.
  *
  * @param {Object|String} key
  * @return {Object} matcher object.
