@@ -221,6 +221,14 @@ describe('Collection', function() {
         assert.equal(collection.count(function(){return true}), 2)
       })
 
+      it('updates items if they already exist', function() {
+        collection.key('name')
+        collection.add(bob)
+        collection.add(tim)
+        collection.add({name: 'Tim', age: 10})
+        assert.equal(collection.get('Tim').age, 10)
+      })
+
       it('can get items by their key', function() {
         collection.key('name')
         collection.add(tim)

@@ -69,6 +69,8 @@ Collection.prototype.add = function add(items, fn) {
     if (!this.has(item)) {
       this.items.push(item)
       addedItems.push(item)
+    } else {
+      return this.update(item[this.key()], item)
     }
   }
   if (fn) fn(addedItems, this.items)
